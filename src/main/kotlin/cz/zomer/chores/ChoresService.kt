@@ -8,15 +8,25 @@ open class ChoresService {
         val age6 = chores.filterKeys { it < 6 }
         val age7 = chores.filterKeys { it < 7 }
         val age8 = chores.filterKeys { it < 8 }
-        when (age) {
-            8 -> return age8.values
-            7 -> return age7.values
-            6 -> return age6.values
-            5 -> return age5.values
-            else -> return age8.values
+        return when {
+            age == 8 ->  age8.values
+            age == 7 ->  age7.values
+            age == 6 ->  age6.values
+            age < 6  -> age5.values
+
+            else -> {
+                chores.put(8, "work hard")
+                chores[2] = "general help to kids"
+                chores [4] = "make the dishes"
+                chores [5] ="clean"
+                chores [6] = "prepare kids to school"
+                return chores.values
+            }
+
 
         }
 
     }
+
 }
 
